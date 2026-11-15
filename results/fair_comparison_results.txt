@@ -1,0 +1,36 @@
+15,420 claims, 23 features (9 ID/calendar columns dropped)
+9 ordered columns encoded in their real order
+test set: 3,084 claims, 185 fraudulent (6.0%)
+
+================================================================================================
+EVERY APPROACH GETS ITS THRESHOLD TUNED THE SAME WAY
+================================================================================================
+Approach                        Cutoff   Caught     Cost     Prec@100   Fraud loss   Lift
+------------------------------------------------------------------------------------------------
+Random forest                   0.060    137/185    1434     0.250      75           4.2x
+SMOTE (parent paper 1)          0.095    142/185    1458     0.150      85           2.5x
+Random forest + calibration     0.090    132/185    1439     0.270      73           4.5x
+Gradient boosting               0.045    175/185    1313     0.290      71           4.8x
+Gradient boosting + calibration 0.085    154/185    1343     0.190      81           3.2x
+------------------------------------------------------------------------------------------------
+
+Fraud loss = wasted reviews out of 100. Lower is better.
+Reviewing 100 claims at random would give precision 0.060.
+
+================================================================================================
+CAPACITY CURVE  (gradient boosting)
+================================================================================================
+What the team gets for each weekly review budget.
+
+Capacity K   Cutoff    Caught      Precision   Fraud loss   % of fraud  Lift
+------------------------------------------------------------------------------------------------
+50           0.267     19/185      0.380       31           10.3        6.3x
+100          0.215     29/185      0.290       71           15.7        4.8x
+200          0.179     42/185      0.210       158          22.7        3.5x
+300          0.159     57/185      0.190       243          30.8        3.2x
+500          0.125     86/185      0.172       414          46.5        2.9x
+1000         0.084     138/185     0.138       862          74.6        2.3x
+------------------------------------------------------------------------------------------------
+
+Smaller budgets give better precision but find less of the total fraud.
+That trade is the thing none of parent papers 1, 2 or 3 reports.

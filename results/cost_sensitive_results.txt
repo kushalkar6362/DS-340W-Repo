@@ -1,0 +1,14 @@
+15,420 claims, 923 fraudulent (6.0%)
+test set: 3,084 claims, 185 fraudulent
+cost function: 10 x missed fraud  +  1 x false alarm
+
+--------------------------------------------------------------------------------------------------------
+1. Baseline         recall 0.022   precision 1.000   caught   4/185  false alarms    0   COST  1810
+2. SMOTE            recall 0.151   precision 0.199   caught  28/185  false alarms  113   COST  1683
+3. Class weights    recall 0.011   precision 1.000   caught   2/185  false alarms    0   COST  1830
+4. Cost threshold   recall 0.730   precision 0.187   caught 135/185  false alarms  586   COST  1086
+--------------------------------------------------------------------------------------------------------
+
+Threshold chosen on training data only: 0.120  (default is 0.500)
+Lowest expected cost: cost threshold at 1086
+Versus SMOTE: -597 (-35.5%)

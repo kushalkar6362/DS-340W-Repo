@@ -1,0 +1,33 @@
+15,420 claims, 23 features after dropping 9 ID/calendar columns
+test set: 3,084 claims, 185 fraudulent (6.0%)
+
+==============================================================================
+PART 1   SAME FOUR APPROACHES, CLEAN FEATURES
+==============================================================================
+Approach              Recall    Precision   Caught      False alarms  Cost    
+------------------------------------------------------------------------------
+1. Baseline           0.038     0.538       7/185       6             1786    
+2. SMOTE              0.265     0.192       49/185      206           1566    
+3. Class weights      0.038     0.350       7/185       13            1793    
+4. Cost threshold     0.697     0.129       129/185     871           1431    
+------------------------------------------------------------------------------
+
+Threshold chosen on training data only: 0.060
+Cost threshold vs SMOTE: -135 (-8.6%)
+
+==============================================================================
+PART 2   WHAT A REAL REVIEW CAPACITY BUYS YOU
+==============================================================================
+Review the top K claims by fraud probability. K is the team's weekly capacity.
+
+Capacity K    Cutoff    Caught      Precision   % fraud found   Cost    
+------------------------------------------------------------------------------
+100           0.290     23/185      0.230       12.4            1697    
+200           0.221     42/185      0.210       22.7            1588    
+300           0.190     54/185      0.180       29.2            1556    
+500           0.140     74/185      0.148       40.0            1536    
+1000          0.061     129/185     0.129       69.7            1431    
+unconstrained 0.060     129/185     0.129       69.7            1431      <- flags 1000 claims
+
+Base rate if you reviewed claims at random: 0.060
+Lift at K=100: 3.8x

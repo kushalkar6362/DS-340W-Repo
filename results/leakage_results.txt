@@ -1,0 +1,10 @@
+15,420 claims, 923 fraudulent (6.0%)
+PAPER ORDER  (balance, then split)
+   test set is 50% fraud
+   accuracy 0.9569   recall 0.9583
+
+CORRECT ORDER (split, then balance)
+   test set is 6% fraud
+   accuracy 0.9125   recall 0.1514
+
+Accuracy barely moves. Recall is what collapses.
